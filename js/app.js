@@ -7,6 +7,9 @@ const email = document.querySelector("#email");
 const asunto = document.querySelector("#asunto");
 const mensaje = document.querySelector("#mensaje");
 
+const er =
+  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 // EventListeners
 eventListeners();
 function eventListeners() {
@@ -45,9 +48,6 @@ function validarFormulario(e) {
   }
 
   if (e.target.type === "email") {
-    const er =
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
     if (er.test(e.target.value)) {
       const error = document.querySelector("p.error");
       if (error) {
@@ -61,6 +61,11 @@ function validarFormulario(e) {
       e.target.classList.add("border", "border-red-500");
       mostrarError("Email no valido");
     }
+  }
+
+  if (er.test(email.value) && asunto.value !== "" && mensaje.value !== "") {
+    enviarBtn.disabled = false;
+    enviarBtn.classList.remove("cursor-not-allowed", "opacity-50");
   }
 }
 
