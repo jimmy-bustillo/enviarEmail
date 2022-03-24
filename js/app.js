@@ -8,6 +8,7 @@ const email = document.querySelector("#email");
 const asunto = document.querySelector("#asunto");
 const mensaje = document.querySelector("#mensaje");
 
+// Expresion Regular para uso de validación de emails
 const er =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -131,7 +132,8 @@ function enviarEmail(e) {
 }
 
 // Resetea el formulario
-function resetearFormulario() {
+function resetearFormulario(e) {
   formulario.reset();
+  e.preventDefault();
   iniciarApp();
 }
